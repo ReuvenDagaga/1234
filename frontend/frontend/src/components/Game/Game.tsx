@@ -1,11 +1,29 @@
+import React, { useEffect, useState } from 'react';
+import Gun from './Gun';
+import Ball from './Ball';
 
+const Game: React.FC = () => {
+  const [balls, setBalls] = useState<Array<{ x: number; y: number }>>([]);
 
-const Game = () => (
-    <div style={{ textAlign: 'center', marginTop: '10%' }}>
-      <h1>Game Screen</h1>
-      <p>Here the game will take place!</p>
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBalls((prevBalls) => [
+        ...prevBalls,
+        { x: Math.random() * 600, y: 0 },
+      ]);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div style={{ position: 'relative', width: '600px', height: '400px' }}>
+      {balls.map((ball, index) => (
+        <Ball key={index} />
+      ))}
+      <Gun />
     </div>
   );
-  
-  export default Game;
-  
+};
+
+export default Game;
