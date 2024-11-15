@@ -31,9 +31,7 @@ export const createNewPlayer = async (newPlayer: IPlayer): Promise<IPlayer> => {
         username: newPlayer.username,
         email: newPlayer.email
         });
-        console.log(nPlayer);
     await nPlayer.save();
-    console.log(nPlayer);
     return nPlayer;
   } catch (error) {
     throw error;

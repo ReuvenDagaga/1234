@@ -38,10 +38,6 @@ export const createNewPlayer = async (req: Request, res: Response): Promise<void
   
   try {
     const newPlayer = await playerService.createNewPlayer(playerFromBody);
-    console.log(newPlayer
-        
-    );
-    
     res.status(201).json(newPlayer);
   } catch (error) {
     console.error(error);
